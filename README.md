@@ -1,4 +1,4 @@
-# 🚀 Three-Tier To-Do Application on Kubernetes
+\# 🚀 Three-Tier To-Do Application on Kubernetes
 
 A full-stack Three-Tier To-Do Application deployed on an **AWS EC2 instance** using **Docker** and **K3s Kubernetes**.
 
@@ -854,63 +854,6 @@ Through this project, I gained hands-on experience with:
 * Application deployment and debugging
 
 ---
-
-# 💡 Interview Explanation
-
-### What did you build?
-
-I built and deployed a three-tier To-Do application on an AWS EC2 instance using Docker and K3s Kubernetes.
-
-The frontend is built with React and served through Nginx. The backend is built using Node.js and Express, and MongoDB is used as the database.
-
-### How does the request flow?
-
-```text
-User
- ↓
-AWS EC2
- ↓
-Nginx / React
- ↓
-/api/*
- ↓
-Backend Service
- ↓
-Node.js / Express
- ↓
-MongoDB
- ↓
-Persistent Storage
-```
-
-### What was the most important troubleshooting experience?
-
-One important issue was `ErrImagePull`.
-
-The frontend image existed locally on the EC2 server, but Kubernetes attempted to pull it from Docker Hub.
-
-I solved it by exporting the Docker image with:
-
-```bash
-docker save
-```
-
-and importing it into the K3s container runtime with:
-
-```bash
-sudo k3s ctr images import
-```
-
-I then configured:
-
-```yaml
-imagePullPolicy: Never
-```
-
-Another issue was an Nginx DNS error because the upstream name did not match the Kubernetes Service name. I corrected the Nginx configuration from `three-tier-backend` to `backend-service`.
-
----
-
 # 🔗 GitHub
 
 **Repository:**
